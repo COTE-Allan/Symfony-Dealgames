@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offre {% endblock %}
+
+{% block body %}
+<div class="form_section">
+<h1>
+    Page Edition
+</h1>
+{{ form_start(form) }}
+    {{form_row(form.name)}}
+    {{form_row(form.description)}}
+    <div>
+     {{form_label(form.category)}}
+    <div class="radio"> 
+    {% for child in form.category %}
+        {{form_row(child, {"row_attr": {"class": "radio_inner"}})}}
+    {% endfor %}
+    </div>
+    </div>
+       
+   
+    {{form_row(form.photoFile)}}
+    
+    <button class="btn">{{ button_label|default("Appliquer les modifications") }}</button>
+{{ form_end(form) }}
+</div>
+{% endblock %}

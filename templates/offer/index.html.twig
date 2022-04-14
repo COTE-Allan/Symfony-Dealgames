@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offre
+	{{offer.id}}
+{% endblock %}
+
+{% block body %}
+	{% include "_flash.html.twig" %}
+	<div class="detail">
+    	<img class="detail_img" src="{{ vich_uploader_asset(offer, 'photoFile') }}"  alt="photo de l'offre"></img>
+	
+		<h1 class="detail_title">
+			{{offer.name}}
+		</h1>
+		<p class="detail_date">Offre posté le
+			{{ offer.published|date('d-m-Y') }}</p>
+		<p class="detail_desc">{{offer.description}}</p>
+
+		<div class="detail_user detail_flex">
+			<p>Offre posté par {{offer.user.username}}.</p>
+			<img class="detail_user_picture" src="{{ vich_uploader_asset(offer.user, 'photoFile') }}" alt="photo de l'offre">                    
+		</div>
+
+		{% if app.user == offer.user %}
+		<div class="detail_creator detail_flex">
+		<p>
+			Ceci est votre offre, vous pouvez la modifier.
+
+		</p>
+		<div class="detail_control">
+			<a href={{ path("app_offer_edit", {id: offer.id} ) }}>
+				<i class="fa-solid fa-pen-to-square"></i>
+			</a>
+			<a href={{ path("app_offer_remove", {id: offer.id} )}}>
+				<i class="fa-solid fa-trash-can"></i>
+			</a>
+		</div>
+		</div>
+
+		{% else %}
+		<div class="detail_contact detail_flex">
+			<p>
+				L'offre vous intéresse ? Contactez {{offer.user.username}} par mail :
+			</p>
+			<a  class="detail_mail" href="mailto:{{offer.user.email}}">{{offer.user.email}}</a>
+		</div>
+	
+		{% endif %}
+		
+
+
+	</div>
+{% endblock %}

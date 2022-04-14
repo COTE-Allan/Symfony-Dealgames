@@ -1,3 +1,351 @@
+@import url("reset.scss");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+$primary: #9b6a6c;
+$secondary: #cedfd9;
+$third: #b09398;
+$success: rgb(49, 133, 49);
+$warning: rgb(176, 44, 24);
+$danger: rgb(221, 143, 16);
+
 body {
-    background-color: lightgray;
+  font-family: "Montserrat", sans-serif;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+h1 {
+  font-size: 25px;
+  text-transform: uppercase;
+  margin: 10px 0;
+}
+img {
+  object-fit: cover;
+}
+
+header {
+  background-color: $primary;
+  padding: 20px 0;
+  margin-bottom: 20px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & .app_logo {
+    width: 150px;
+  }
+  & div {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  & a {
+    color: $secondary;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+  }
+  & .svg-inline--fa {
+    height: 1.5em;
+    margin-bottom: 3px;
+  }
+  & .profile_picture {
+    width: 40px;
+    height: 40px;
+    border: 3px $secondary solid;
+    border-radius: 50%;
+    margin-bottom: 3px;
+  }
+}
+
+.category_filter {
+  background-color: $primary;
+  color: $secondary;
+  padding: 10px;
+  font-size: 18px;
+  margin: 10px;
+  text-align: center;
+  width: 100%;
+  & a {
+    color: $secondary;
+    text-decoration: none;
+    padding: 0 10px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.card {
+  border: 3px $primary solid;
+  flex: 1 0 35%;
+  text-align: center;
+  width: 150px;
+  margin: 5px;
+  color: $primary;
+  text-decoration: none;
+  background-color: white;
+  transition: transform 200ms ease;
+  &_list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &_title {
+    font-size: 21px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 0 5px;
+  }
+  &_date {
+    color: $third;
+    margin-bottom: 5px;
+  }
+  &_picture {
+    width: 100%;
+    height: 150px;
+    margin-bottom: 5px;
+  }
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.detail {
+  color: $primary;
+  padding: 10px;
+  &_title {
+    margin-bottom: 0;
+  }
+  &_date {
+    color: $third;
+  }
+  &_desc {
+    margin: 15px 0;
+  }
+  &_control {
+    display: flex;
+    justify-content: center;
+    .svg-inline--fa {
+      height: 3em;
+    }
+    & svg {
+      margin: 0 10px;
+    }
+  }
+  &_img {
+    width: 200px;
+  }
+  &_flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  &_user {
+    &_picture {
+      width: 40px;
+      height: 40px;
+      border: 3px $secondary solid;
+      border-radius: 50%;
+      margin: 5px 0;
+    }
+  }
+  &_creator {
+    & p {
+      margin: 5px;
+    }
+  }
+}
+
+.pagination {
+  background-color: $primary;
+  color: $secondary;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 22px;
+  text-align: center;
+  & a {
+    color: $secondary;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.alert {
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  padding: 10px;
+  color: white;
+  &-success {
+    background-color: $success;
+  }
+  &-warning {
+    background-color: $warning;
+  }
+  &-danger {
+    background-color: $danger;
+  }
+  &-removed {
+    display: none;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+
+.form_section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  & form {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+    & label {
+      width: 300px;
+      text-align: left;
+    }
+    & input {
+      margin: 10px 0;
+      border: 3px $primary solid;
+      padding: 7px 10px;
+      width: 300px;
+    }
+    & textarea {
+      margin: 10px 0;
+      border: 3px $primary solid;
+      padding: 7px 10px;
+      width: 300px;
+      resize: vertical; /* user can resize vertically, but width is fixed */
+    }
+    & button {
+      font-size: 15px;
+      padding: 10px;
+    margin-top: 10px;
+    min-width: 150px;
+    min-height: 30px;
+    border: 3px $primary solid;
+    background-color: white;
+    color: $primary;
+    transition: all 100ms ease-in-out;
+      &:hover {
+        background-color: $primary;
+        color: white;
+        cursor: pointer;
+      }
+    }
+    & div {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+    & .checkbox {
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      align-items: center;
+      & label {
+        width: initial;
+      }
+      & input {
+        height: 1.4em;
+        margin-right: 5px;
+        width: initial;
+      }
+    }
+    & .vich-image {
+      & a {
+        color: $secondary
+        }
+    
+    & div {
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      align-items: center;
+      & label {
+        width: initial;
+      }
+      & input {
+        height: 1.4em;
+        margin-right: 5px;
+        width: initial;
+      }
+     
+    }
+    }
+    & .radio {
+      text-align: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-bottom: 20px;
+      padding-top: 10px;
+      &_inner {
+        display: flex;
+        flex-direction: column-reverse;
+        padding: 0 5px;
+        width: 100px;
+        & label {
+          text-align: center;
+          width: initial;
+          text-transform: capitalize;
+        }
+      }
+      & input {
+        height: 1.4em;
+        width: 1.4em;
+      }
+    }
+    & img {
+      width: 200px;
+    }
+  }
+& .noAccount {
+  width: 80vw;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  & a {
+    padding: 10px;
+    margin-top: 10px;
+    width: 150px;
+    border: 3px $primary solid;
+    text-decoration: none;
+    background-color: white;
+    color: $primary;
+    transition: all 100ms ease-in-out;
+      &:hover {
+        background-color: $primary;
+        color: white;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+
+.profile {
+  &_picture {
+    width: 200px;
+    height: 200px;
+    border: 3px $secondary solid;
+    border-radius: 50%;
+    margin-bottom: 3px;  }
 }

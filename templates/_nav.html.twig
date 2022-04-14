@@ -1,0 +1,24 @@
+<header>
+	<nav>
+		<div class="nav_main">
+			<a href={{path("app_offer_add")}}>
+				<i class="fa-solid fa-plus"></i>
+                Créer une offre
+			</a>
+			<a href={{path("app_home")}}><img src="{{ asset('images/logo.svg') }}" alt="logo de DealGames" class="app_logo"/></a>
+			{% if app.user %}
+				<a href="{{ path('app_profile') }}">
+		<img class="profile_picture" src="{{ vich_uploader_asset(app.user, 'photoFile') }}" alt="photo de l'offre">                    
+		Profil
+				</a>
+		
+			{% else %}
+				<a href={{path("app_login")}}>
+					<i class="fa-solid fa-user"></i>
+                    Connexion
+				</a>
+			{% endif %}
+		</div>
+
+	</nav>
+</header>

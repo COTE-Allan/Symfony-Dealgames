@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil |
+	{{type}}
+{% endblock %}
+
+{% block body %}
+
+	<main>
+			{% include "_flash.html.twig" %}
+
+		<h1>
+			{{title}}
+		</h1>
+		<div class="card_list">
+			<div class="category_filter">
+				<a href={{ path("app_home_category", {name: "consoles"} ) }}>
+					Consoles
+				</a>
+                -
+				<a href={{ path("app_home_category", {name: "jeux"} ) }}>
+					Jeux
+				</a>
+                 -
+				<a href={{ path("app_home_category", {name: "accessoires"} ) }}>
+					Accessoires
+				</a>
+			</div>
+			{% for offer in offers %}
+				<a class="card" id="card_{{offer.id}}" href={{ path("app_offer", {id: offer.id} )}}>
+
+					<img class="card_picture" src="{{ vich_uploader_asset(offer, 'photoFile') }}" alt="photo de l'offre">
+					<div class="card_title">{{ offer.name }}</div>
+					<div class="card_date">{{ offer.published|date('d-m-Y') }}</div>
+				</a>
+				<br>
+			{% endfor %}
+
+		</div>
+		<div class="navigation">
+			{{ knp_pagination_render(offers) }}
+		</div>
+
+	</main>
+{% endblock %}

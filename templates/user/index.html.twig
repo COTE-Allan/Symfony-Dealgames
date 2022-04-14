@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+<div class="profile">
+
+		<img class="profile_picture" src="{{ vich_uploader_asset(app.user, 'photoFile') }}" alt="photo de l'offre">                    
+        <p>{{app.user.username}}</p>
+        <p>{{app.user.email}}</p>
+        <p>{{app.user.createdAt|date('d-m-Y')}}</p>
+        <a href="{{ path('app_logout') }}">
+		    Déconnexion
+		</a>
+</div>
+{% endblock %}
