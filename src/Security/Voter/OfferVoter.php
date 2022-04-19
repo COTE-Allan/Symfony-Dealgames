@@ -37,6 +37,7 @@ class OfferVoter extends Voter
             return true;
         }
         // ... (check conditions and return true to grant permission) ...
+        // Je vérifie que le user de l'offre et le même que le user connecté.
         switch ($attribute) {
             case self::EDIT:
                 return $user === $subject->getUser();

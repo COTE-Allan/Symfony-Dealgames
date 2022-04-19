@@ -1,6 +1,7 @@
 <header>
 	<nav>
 		<div class="nav_main">
+		{# J'affiche si je suis connecté #}
 			{% if app.user %}
 				<a href={{path("app_offer_add")}}>
 					<i class="fa-solid fa-plus"></i>

@@ -33,6 +33,7 @@ class MainController extends AbstractController
     /**
      * @Route("/home/{name}", name="app_home_category")
      */
+    // J'affiche la même page mais avec un paramètre servant a trier les offres.
     public function index_category(Category $category, OfferRepository $offersRepo, PaginatorInterface $paginator, Request $request): Response
     {
         // dump($offersRepo->findByCategory($category));
