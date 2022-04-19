@@ -23,6 +23,7 @@ class OfferController extends AbstractController
      */
     public function remove_offer(OfferRepository $offerRepo, Offer $offer): Response
     {
+        $this->denyAccessUnlessGranted("OFFER_EDIT", $offer);
         $offer->setPictureName("");
         $offerRepo->remove($offer);
         $this->addFlash('success', 'Votre offre a été retiré avec succès.');
@@ -30,14 +31,12 @@ class OfferController extends AbstractController
     }
     /**
      * @Route("/add", name="app_offer_add")
+     * @IsGranted("ROLE_USER")
      */
     public function add_offer(Request $request, OfferRepository $offerRepo): Response
     {
-        if (!$this->isGranted("ROLE_USER")){
-            // Do Things
-            return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
-        }
         $offer = new Offer;
+        // $this->denyAccessUnlessGranted("OFFER_ADD", $offer);
         $user = $this->getUser();
         $form = $this->createForm(OfferType::class, $offer);
         $form->handleRequest($request);
@@ -66,6 +65,7 @@ class OfferController extends AbstractController
      */
     public function edit_offer(Offer $offer, Request $request, OfferRepository $offerRepo): Response
     {
+        $this->denyAccessUnlessGranted("OFFER_EDIT", $offer);   
         $form = $this->createForm(OfferType::class, $offer);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mail envoyé.{% endblock %}
+
+{% block body %}
+<div class="mail_sent">
+   <p>
+     Si l'adresse email est correcte, vous devriez avoir reçu un mail. Le lien présent sur ce dernier vous permettra de changer votre mot de passe.
+        Le lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+    </p>
+    <p>Si vous n'avez pas reçu le mail, vérifiez votre boîte mail ou <a href="{{ path('app_forgot_password_request') }}">renvoyez une demande</a>.</p>
+</div>
+ 
+{% endblock %}

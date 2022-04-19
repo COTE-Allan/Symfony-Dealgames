@@ -23,43 +23,48 @@ class RegistrationFormType extends AbstractType
             ->add('email')
             ->add('username', NULL, [
                 "label" => "Pseudonyme"
-            ])
-            ->add('plainPassword', RepeatedType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-                "type" => PasswordType::class,
-                'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
-                "invalid_message" => "Les mots de passe ne correspondent pas.",
-                "first_options" => ["label" => "Mot de passe"],
-                "second_options" => ["label" => "Confirmation du mot de passe"],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a password',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
-                ],
-            ])
+            ]);
+            if (!$options["edit"]) {
+                $builder
+                ->add('plainPassword', RepeatedType::class, [
+                    // instead of being set onto the object directly,
+                    // this is read and encoded in the controller
+                    "type" => PasswordType::class,
+                    'mapped' => false,
+                    'attr' => ['autocomplete' => 'new-password'],
+                    "invalid_message" => "Les mots de passe ne correspondent pas.",
+                    "first_options" => ["label" => "Mot de passe"],
+                    "second_options" => ["label" => "Confirmation du mot de passe"],
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => 'Please enter a password',
+                        ]),
+                        new Length([
+                            'min' => 6,
+                            'minMessage' => 'Your password should be at least {{ limit }} characters',
+                            // max length allowed by Symfony for security reasons
+                            'max' => 4096,
+                        ]),
+                    ],
+                ])
+                ->add('agreeTerms', CheckboxType::class, [
+                    'mapped' => false,
+                    'label' => "J'accepte les conditions de Dealgames.",
+                    'constraints' => [
+                        new IsTrue([
+                            'message' => 'Vous devez accepter les conditions.',
+                        ]),
+                    ],
+                    'row_attr' => [
+                        "class" => "checkbox",
+                    ]
+                    ]);
+            }
+            $builder
             ->add('photoFile', VichImageType::class, [
                 "label" => "Ajoutez une photo"
             ])
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'label' => "J'accepte les conditions de Dealgames.",
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'Vous devez accepter les conditions.',
-                    ]),
-                ],
-                'row_attr' => [
-                    "class" => "checkbox",
-                ]
-            ])
+
          
         ;
     }
@@ -68,6 +73,7 @@ class RegistrationFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            "edit" => false,
         ]);
     }
 }

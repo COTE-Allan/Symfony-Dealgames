@@ -16,10 +16,12 @@
 			{{ offer.published|date('d-m-Y') }}</p>
 		<p class="detail_desc">{{offer.description}}</p>
 
+		{% if app.user != offer.user %}
 		<div class="detail_user detail_flex">
 			<p>Offre posté par {{offer.user.username}}.</p>
 			<img class="detail_user_picture" src="{{ vich_uploader_asset(offer.user, 'photoFile') }}" alt="photo de l'offre">                    
 		</div>
+		{% endif %}
 
 		{% if app.user == offer.user %}
 		<div class="detail_creator detail_flex">

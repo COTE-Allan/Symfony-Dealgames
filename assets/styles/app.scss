@@ -60,6 +60,8 @@ header {
     border: 3px $secondary solid;
     border-radius: 50%;
     margin-bottom: 3px;
+    background-color: #cedfd9;
+
   }
 }
 
@@ -146,6 +148,7 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
   }
   &_user {
     &_picture {
@@ -154,12 +157,17 @@ header {
       border: 3px $secondary solid;
       border-radius: 50%;
       margin: 5px 0;
+      background-color: #cedfd9;
     }
   }
   &_creator {
     & p {
       margin: 5px;
     }
+  }
+  &_mail {
+    font-size: 25px;
+    margin-top: 5px;
   }
 }
 
@@ -210,6 +218,10 @@ header {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  & small {
+    width: 80%;
+    text-align: center;
+  }
   & form {
   margin: 20px 0;
   display: flex;
@@ -342,10 +354,50 @@ header {
 
 
 .profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px;
   &_picture {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border: 3px $secondary solid;
     border-radius: 50%;
     margin-bottom: 3px;  }
+  & a {
+    font-size: 15px;
+    margin: 10px 0;
+    text-decoration: none;
+    padding: 10px;
+    border: 3px $primary solid;
+    background-color: white;
+    color: $primary;
+    transition: all 100ms ease-in-out;
+    width: 200px;
+    text-align: center;
+      &:hover {
+        background-color: $primary;
+        color: white;
+        cursor: pointer;
+      }
+  }
+  & p {
+    margin: 2px 0;
+  }
+}
+
+
+.mail_sent {
+  padding: 10px;
+  // text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  font-size: 20px;
+  & p {
+    width: 60%;
+  }
 }

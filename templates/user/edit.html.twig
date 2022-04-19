@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition de compte
+{% endblock %}
+
+{% block body %}
+	{% for flash_error in app.flashes('verify_email_error') %}
+		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+	{% endfor %}
+
+	<div class="form_section">
+		<h1>Modifier mon profil</h1>
+		{{ form_start(form) }}
+		    {{form_row(form.email)}}
+		    {{form_row(form.username)}}
+		    {{form_row(form.photoFile)}}
+		    <button type="submit" class="btn">Valider</button>
+		{{ form_end(form) }}
+	</div>
+{% endblock %}

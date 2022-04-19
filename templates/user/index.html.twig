@@ -6,10 +6,20 @@
 <div class="profile">
 
 		<img class="profile_picture" src="{{ vich_uploader_asset(app.user, 'photoFile') }}" alt="photo de l'offre">                    
-        <p>{{app.user.username}}</p>
-        <p>{{app.user.email}}</p>
-        <p>{{app.user.createdAt|date('d-m-Y')}}</p>
-        <a href="{{ path('app_logout') }}">
+        <p class="profile_username">{{app.user.username}}</p>
+        <p class="profile_email">{{app.user.email}}</p>
+        <p class="profile_created">{{app.user.createdAt|date('d-m-Y')}}</p>
+     
+
+		{% if is_granted('ROLE_ADMIN') %}
+            <a class="profile_logout" href="{{ path('admin') }}">
+		        Dashboard Admin
+		    </a>
+        {% endif %}
+          <a class="profile_edit" href="{{ path('app_profile_edit') }}">
+		    Modifier votre profil
+		</a>
+        <a class="profile_logout" href="{{ path('app_logout') }}">
 		    Déconnexion
 		</a>
 </div>

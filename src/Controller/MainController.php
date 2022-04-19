@@ -31,7 +31,7 @@ class MainController extends AbstractController
         ]);
     }
     /**
-     * @Route("/{name}", name="app_home_category")
+     * @Route("/home/{name}", name="app_home_category")
      */
     public function index_category(Category $category, OfferRepository $offersRepo, PaginatorInterface $paginator, Request $request): Response
     {
