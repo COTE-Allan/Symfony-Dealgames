@@ -11,6 +11,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 
 /**
@@ -29,6 +31,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotBlank
+     * @Assert\Email(
+     *     message = "L'email '{{ value }}' n'est pas valide."
+     * )
+     * @Assert\NotNull
      */
     private $email;
 
@@ -40,11 +47,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 6,
+     *      minMessage = "Votre mot de passe doit avoir plus de six caractères.",
+     * )
+     * @Assert\NotNull
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 3,
+     *      minMessage = "Votre nom doit avoir plus de trois caractères.",
+     * )
+     * @Assert\NotNull
      */
     private $username;
 

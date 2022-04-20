@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\OfferRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=OfferRepository::class)
@@ -21,6 +22,12 @@ class Offer
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 3,
+     *      minMessage = "Votre offre doit avoir plus de trois caractères.",
+     * )
+     * @Assert\NotNull
      */
     private $name;
 
