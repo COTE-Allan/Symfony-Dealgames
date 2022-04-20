@@ -14,17 +14,12 @@
 		</h1>
 		<div class="card_list">
 			<div class="category_filter">
-				<a href={{ path("app_home_category", {name: "consoles"} ) }}>
-					Consoles
-				</a>
-                -
-				<a href={{ path("app_home_category", {name: "jeux"} ) }}>
-					Jeux
-				</a>
-                 -
-				<a href={{ path("app_home_category", {name: "accessoires"} ) }}>
-					Accessoires
-				</a>
+						{% for category in categories %}
+
+						<a href={{ path("app_home_category", {name: category.name} ) }}>
+						{{category.name|capitalize }}
+						</a>
+						{% endfor %}
 			</div>
 			{% for offer in offers %}
 				<a class="card" id="card_{{offer.id}}" href={{ path("app_offer", {id: offer.id} )}}>

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Repository\CategoryRepository;
 use App\Repository\OfferRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,7 +16,7 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="app_home")
      */
-    public function index(OfferRepository $offersRepo, PaginatorInterface $paginator, Request $request): Response
+    public function index(OfferRepository $offersRepo, PaginatorInterface $paginator, Request $request, CategoryRepository $categoryRepo): Response
     {
         // dump($offersRepo->findAll());
 
@@ -28,13 +29,14 @@ class MainController extends AbstractController
             "title" => "Dernières offres",
             "type" => "Offres récentes",
             "offers" => $pagination,
+            "categories" => $categoryRepo->findAll(),
         ]);
     }
     /**
      * @Route("/home/{name}", name="app_home_category")
      */
     // J'affiche la même page mais avec un paramètre servant a trier les offres.
-    public function index_category(Category $category, OfferRepository $offersRepo, PaginatorInterface $paginator, Request $request): Response
+    public function index_category(Category $category, OfferRepository $offersRepo, PaginatorInterface $paginator, Request $request, CategoryRepository $categoryRepo): Response
     {
         // dump($offersRepo->findByCategory($category));
         $pagination = $paginator->paginate(
@@ -46,6 +48,7 @@ class MainController extends AbstractController
             "title" => $category->getName(),
             "type" => $category->getName(),
             "offers" => $pagination,
+            "categories" => $categoryRepo->findAll(),
         ]);
     }
 
